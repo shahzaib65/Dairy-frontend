@@ -42,11 +42,11 @@ export default function VegetableModal({ isOpen, onRequestClose }) {
        noValidate
        onSubmit={handleSubmit(async(res)=>{
         console.log(res)
-        console.log(categoryValue)
-        console.log(categoryWeight)
+       
          const data = new FormData();
         data.append("image",selectedFile);
         data.append("title",categoryValue);
+        data.append("name",res.name)
         data.append("weight",categoryWeight);
         data.append("discount_percentage", res.discount);
         data.append("premium_percentage",res.premium);
@@ -57,7 +57,7 @@ export default function VegetableModal({ isOpen, onRequestClose }) {
      const config = {     
     headers: { 'content-type': 'multipart/form-data' }
        }
-
+ 
        axios.post("https://dairy-backend-production.up.railway.app/api/category/upload",data, config)
     .then(response => {
         console.log(response);
@@ -96,7 +96,7 @@ export default function VegetableModal({ isOpen, onRequestClose }) {
           </div>
 
           <div className="sm:col-span-2">
-            <label htmlFor="email" className="block text-sm font-semibold leading-6 text-black">
+            <label htmlFor="email" className="block text-sm font-semibold leading-6 text-black mt-2">
               Category Weight options
             </label>
             <div>
@@ -110,6 +110,26 @@ export default function VegetableModal({ isOpen, onRequestClose }) {
       </select>
             </div>
           </div>
+
+          <div className="sm:col-span-2">
+            <label htmlFor="email" className="block text-sm font-semibold leading-6 mt-2 text-black">
+              Category Name
+            </label>
+            <div className="mt-0">
+              <input
+                type="text"
+                name="name"
+                {...register("name", {
+                    required: "name is required"
+                  })}
+                className="block w-full rounded-md bg-white border-0 px-2 py-2 text-black shadow-sm ring-1 ring-inset ring-gray-900 placeholder:text-gray-900 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              />
+               {errors.name && (
+                  <p className="text-start text-red-500">{errors.name.message}</p>
+                )}
+            </div>
+          </div>
+
 
           <div className="sm:col-span-2">
             <label htmlFor="email" className="block text-sm font-semibold leading-6 mt-2 text-black">

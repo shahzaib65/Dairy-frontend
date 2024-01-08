@@ -51,7 +51,7 @@ getVegetables()
                     alt={product.imageAlt}
                     className=" h-40 items-center object-cover px-8  lg:h-40 lg:w-full lg:items-center lg:mx-4"
                   />
-                  <p className=' text-black font-bold font-sans text-lg'>{product.name}</p>
+                  <p className=' text-black font-bold font-sans text-lg mt-10'>{product.name}</p>
                 </div>
 
           <div className=' flex flex-col'>
